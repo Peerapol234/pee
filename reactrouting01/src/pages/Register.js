@@ -7,7 +7,7 @@ function Register() {
 
   const [formData, setFormData] = useState({
     username: '',
-    email: ''
+    email: '',
     password: '',
     confirmPassword: ''
   });
@@ -28,6 +28,12 @@ function Register() {
     // ตรวจสอบรหัสผ่านกับยืนยันรหัสผ่าน
     if (formData.password !== formData.confirmPassword) {
       setError('รหัสผ่านและยืนยันรหัสผ่านไม่ตรงกัน');
+      return;
+    }
+
+    // ตรวจสอบความยาวรหัสผ่านอย่างน้อย 6 ตัว
+    if (formData.password.length < 6) {
+      setError('รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร');
       return;
     }
 
